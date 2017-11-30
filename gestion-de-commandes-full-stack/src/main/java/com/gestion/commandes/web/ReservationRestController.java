@@ -3,18 +3,22 @@ package com.gestion.commandes.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.commandes.dao.ReservationRepository;
+import com.gestion.commandes.entities.Evenement;
 import com.gestion.commandes.entities.Reservation;
 
 @RestController
-@RequestMapping(value="/salle/reservation/v1")
+//@RequestMapping(value="/salle/reservation/v1")
 public class ReservationRestController {
 
 
@@ -24,6 +28,13 @@ public class ReservationRestController {
     @RequestMapping(value = "/list-reservations", method = RequestMethod.GET)
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
+    }
+    
+    @RequestMapping(value = "/evenements", method = RequestMethod.GET)
+    public Page<Reservation> listEvenement(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size){
+        return reservationRepository.findAll(new PageRequest(page, size));
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -3,9 +3,12 @@ package com.gestion.commandes.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestion.commandes.dao.EvenementRepository;
@@ -19,7 +22,7 @@ public class EvenementRestController {
     EvenementRepository evenementRepository;
 
 
-    /*@RequestMapping(value = "/list-evenements", method = RequestMethod.GET)
+    @RequestMapping(value = "/list-evenements", method = RequestMethod.GET)
     public List<Evenement> getAllEvenements(){
         return evenementRepository.findAll();
     }
@@ -27,7 +30,7 @@ public class EvenementRestController {
     public @ResponseBody List<Evenement> addEvenement(@RequestBody Evenement evenement){
         evenementRepository.save(evenement);
         return evenementRepository.findAll();
-    }*/
+    }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public List<Evenement> remove(@PathVariable Long id){

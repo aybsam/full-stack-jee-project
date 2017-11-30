@@ -1,5 +1,8 @@
 package com.gestion.commandes.entities;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,7 +14,7 @@ public class Salle implements Serializable{
     private String numSalle;
     private int capacite;
     private boolean isReserved;
-    @ManyToOne
+    @ManyToOne @JsonIgnore
     @JoinColumn(name="ID_EVENEMENT")
     private Evenement evenement;
 
