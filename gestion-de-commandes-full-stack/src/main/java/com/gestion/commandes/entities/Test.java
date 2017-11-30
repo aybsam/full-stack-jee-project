@@ -4,4 +4,5 @@ public class Test {
 	
 	private String ayoub ;
 
+	public void ayoub () {}
 }
